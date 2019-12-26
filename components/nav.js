@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import "./nav.scss";
+import "./Nav.scss";
 
 const links = [
   { href: "https://zeit.co/now", label: "ZEIT" },

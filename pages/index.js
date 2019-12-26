@@ -1,23 +1,16 @@
 import React from "react";
-import Head from "next/head";
 import Nav from "@components/nav";
 import "./index.scss";
+import Layout from "@components/Layout";
 
 const Home = () => (
-  <div>
-    <Head>
-      <title>Home</title>
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
-
+  <Layout>
     <Nav />
-
     <div className="hero">
       <h1 className="title">Welcome to Next.js!</h1>
       <p className="description">
         To get started, edit <code>pages/index.js</code> and save to reload.
       </p>
-
       <div className="row">
         <a href="https://nextjs.org/docs" className="card">
           <h3>Documentation &rarr;</h3>
@@ -36,7 +29,7 @@ const Home = () => (
         </a>
       </div>
     </div>
-  </div>
+  </Layout>
 );
 
 export default Home;
