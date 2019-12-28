@@ -1,14 +1,15 @@
 import React from "react";
 import Head from "next/head";
+import "./default.scss";
 
-const Layout = ({ children }) => (
-  <div>
+const Default = ({ children, title }) => (
+  <>
     <Head>
-      <title>Home</title>
+      <title>{title}</title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
     {children}
-  </div>
+  </>
 );
 
-export default Layout;
+export default Default;

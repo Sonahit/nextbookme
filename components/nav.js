@@ -1,30 +1,28 @@
 import React from "react";
 import Link from "next/link";
 import "./Nav.scss";
+import PropTypes from "prop-types";
 
-const links = [
-  { href: "https://zeit.co/now", label: "ZEIT" },
-  { href: "https://github.com/zeit/next.js", label: "GitHub" }
-].map(link => {
-  link.key = `nav-link-${link.href}-${link.label}`;
-  return link;
-});
-
-const Nav = () => (
-  <nav>
-    <ul>
-      <li>
-        <Link href="/">
-          <a>Home</a>
-        </Link>
-      </li>
+const Nav = ({ links }) => (
+  <nav className="nav">
+    <ul className="nav__list">
       {links.map(({ key, href, label }) => (
-        <li key={key}>
-          <a href={href}>{label}</a>
+        <li className="nav__element" key={key}>
+          <Link href={href}>
+            <a className="nav__link">{label}</a>
+          </Link>
         </li>
       ))}
     </ul>
   </nav>
 );
+
+Nav.propTypes = {
+  links: PropTypes.arrayOf({
+    key: PropTypes.string,
+    href: PropTypes.string,
+    label: PropTypes.any
+  }).isRequired
+};
 
 export default Nav;

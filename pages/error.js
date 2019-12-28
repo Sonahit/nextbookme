@@ -1,8 +1,8 @@
 import React from "react";
 
-import Layout from "@components/Layout";
+import Layout from "@layouts/MainLayout";
 
-import "./booking.scss";
+import "@styles/error.scss";
 
 const Error = () => <Layout>Error page</Layout>;
 
