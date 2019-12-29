@@ -28,7 +28,7 @@ server.use(passport.session());
 
 app.prepare().then(() => {
   const routes = require("./routes");
-  routes(server);
+  routes(server, app);
   server
     .use(async ctx => {
       await handle(ctx.req, ctx.res);

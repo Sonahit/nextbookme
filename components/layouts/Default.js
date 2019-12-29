@@ -1,6 +1,6 @@
 import React from "react";
 import Head from "next/head";
-import "./default.scss";
+import "@layoutStyles/default.scss";
 
 const Default = ({ children, title }) => (
   <>

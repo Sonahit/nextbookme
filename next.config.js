@@ -13,6 +13,10 @@ module.exports = withSass({
       __dirname,
       "components/layouts"
     );
+    config.resolve.alias["@layoutStyles"] = path.join(
+      __dirname,
+      "components/layouts/styles"
+    );
     return config;
   }
 });

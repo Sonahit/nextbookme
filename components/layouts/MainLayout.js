@@ -1,7 +1,7 @@
 import React from "react";
 import Nav from "@components/nav";
 import Default from "./Default";
-import "./main.scss";
+import "@layoutStyles/main.scss";
 
 const links = [
   {

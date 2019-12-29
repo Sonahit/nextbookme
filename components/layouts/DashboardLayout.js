@@ -1,6 +1,6 @@
 import React from "react";
 import Nav from "@components/nav";
-import "./dashboard.scss";
+import "@layoutStyles/dashboard.scss";
 import Default from "./Default";
 
 const links = [
@@ -21,12 +21,8 @@ const links = [
     label: "About"
   },
   {
-    href: "/login",
-    label: "Login"
-  },
-  {
-    href: "/signup",
-    label: "Sign up"
+    href: "/signoff",
+    label: "Sign off"
   }
 ].map(link => {
   link.key = `nav-link-${link.href}-${link.label}`;
