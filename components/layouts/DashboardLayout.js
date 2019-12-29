@@ -29,7 +29,7 @@ const links = [
   return link;
 });
 
-const DashboardLayout = ({ children, title }) => (
+const DashboardLayout = ({ children, title = "Next Book Me" }) => (
   <Default title={title}>
     <Nav links={links} />
     {children}

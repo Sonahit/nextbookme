@@ -10,24 +10,14 @@
  */
 
 /**
- * @param {String[] | String} routes
  * @returns {Middleware} middleware
  */
-module.exports = routes => {
-  const ensureArray = val => {
-    if (Array.isArray(val)) return val;
-    return [val];
-  };
-  const rts = ensureArray(routes);
+module.exports = () => {
   return function(ctx, next) {
-    const url = ctx.req.url;
-    if (rts.some(rt => rt === url)) {
-      if (ctx.isAuthenticated()) {
-        return next();
-      }
-      ctx.response.append("Content-Type", "application/json");
-      return ctx.throw(401, { message: "Not authenticated" });
+    if (ctx.isAuthenticated()) {
+      return next();
     }
-    return next();
+    ctx.response.append("Content-Type", "application/json");
+    return ctx.throw(401, { message: "Not authenticated" });
   };
 };

@@ -11,13 +11,23 @@ const Login = () => {
    */
   const handleSubmit = e => {
     e.preventDefault();
-    const userInput = e.target.username;
-    const pswdInput = e.target.password;
+    const username = e.target.username.value;
+    const password = e.target.password.value;
+    const body = JSON.stringify({ username, password });
     fetch("/api/v1/login", {
-      method: "POST"
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body,
+      redirect: "follow"
     })
-      .then(res => {})
-      .catch(err => {});
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
   return (
     <Layout>

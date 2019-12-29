@@ -9,23 +9,27 @@ module.exports = router => {
    * @param {import('koa').Next} next
    */
   const handlePost = (ctx, next) => {
-    return passport.authenticate("local", (err, user, info, status) => {
+    return passport.authenticate("local", async (err, user, info, status) => {
       if (!user) {
         jsonResponse(
           ctx,
           {
             success: false,
-            message: "Wrong credentials"
+            message: info.message
           },
-          401
+          status
         );
-        ctx.throw(401);
+        ctx.throw(status);
       } else {
-        jsonResponse(ctx, {
-          success: true
-        });
-        ctx.redirect("/");
-        return ctx.login(user);
+        jsonResponse(
+          ctx,
+          {
+            success: true
+          },
+          301
+        );
+        await ctx.login(user);
+        return ctx.redirect("/");
       }
     })(ctx);
   };
