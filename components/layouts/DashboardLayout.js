@@ -31,7 +31,12 @@ const links = [
 
 const DashboardLayout = ({ children, title = "Next Book Me" }) => (
   <Default title={title}>
-    <Nav links={links} />
+    <header className="header">
+      <div className="header__logo">
+        <h1>Next Book Me</h1>
+      </div>
+      <Nav links={links} />
+    </header>
     {children}
   </Default>
 );

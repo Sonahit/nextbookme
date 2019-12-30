@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { withRouter } from "next/router";
 import "./Nav.scss";
 import PropTypes from "prop-types";
 /**
@@ -12,15 +13,22 @@ import PropTypes from "prop-types";
  *
  * @param {Object} props
  * @param {Links} props.links
+ * @param {import('next/router').Router} props.router
  */
-const Nav = ({ links }) => {
+const Nav = ({ links, router }) => {
   return (
-    <nav className="nav">
-      <ul className="nav__list">
+    <nav>
+      <ul className="nav nav-tabs">
         {links.map(({ key, href, label }) => (
-          <li className="nav__element" key={key}>
+          <li className="nav-item" key={key}>
             <Link href={href}>
-              <a className="nav__link">{label}</a>
+              <a
+                className={`nav-link ${
+                  router.pathname === href ? "active" : ""
+                }`}
+              >
+                {label}
+              </a>
             </Link>
           </li>
         ))}
@@ -39,4 +47,4 @@ Nav.propTypes = {
   ).isRequired
 };
 
-export default Nav;
+export default withRouter(Nav);

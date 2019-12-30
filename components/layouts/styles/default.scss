@@ -1,0 +1,13 @@
+.header {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 40px;
+  &__logo {
+    margin: 0 auto;
+    h1 {
+      font-size: 2em;
+    }
+  }
+}
