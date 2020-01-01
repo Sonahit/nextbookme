@@ -1,0 +1,38 @@
+.footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
+  &__container {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    padding: 5%;
+  }
+
+  &__information {
+    width: 50%;
+    text-align: justify;
+  }
+  &__desc {
+    p {
+      font-size: 10px;
+      text-align: center;
+      letter-spacing: 0.5px;
+    }
+  }
+
+  h5 {
+    font-size: 16px;
+  }
+  .nav {
+    &-link {
+      font-size: 12px;
+      padding: 5px;
+    }
+  }
+  &__person {
+    margin-right: 5px;
+    &::after {
+      margin: 0 5px;
+      content: ">>";
+    }
+  }
+}

@@ -1,9 +1,9 @@
 import React from "react";
 
-import Layout from "@layouts/MainLayout";
+import Layout from "@layouts/Layout";
 
 import "@styles/about.scss";
 
 const About = () => <Layout>About page</Layout>;
 
-export default About;
+export default withLogin(About);

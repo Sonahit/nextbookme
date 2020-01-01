@@ -1,9 +1,10 @@
 import React from "react";
 
-import Layout from "@layouts/MainLayout";
+import Layout from "@layouts/Layout";
 
 import "@styles/error.scss";
+import withLogin from "../hocs/withLogin";
 
 const Error = () => <Layout>Error page</Layout>;
 
-export default Error;
+export default withLogin(Error);

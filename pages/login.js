@@ -1,8 +1,9 @@
 import React from "react";
 
-import Layout from "@layouts/MainLayout";
+import Layout from "@layouts/Layout";
 
 import "@styles/login.scss";
+import withLogin from "../hocs/withLogin";
 
 const Login = () => {
   /**
@@ -23,8 +24,9 @@ const Login = () => {
       redirect: "follow"
     })
       .then(res => {
-        console.log(res);
+        if (res.ok) return res.json();
       })
+      .then(user => {})
       .catch(err => {
         console.log(err);
       });
@@ -41,4 +43,8 @@ const Login = () => {
   );
 };
 
-export default Login;
+Login.getInitialProps = async ctx => {
+  return {};
+};
+
+export default withLogin(Login);

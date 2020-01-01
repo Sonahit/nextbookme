@@ -1,9 +1,10 @@
 import React from "react";
 
-import Layout from "@layouts/MainLayout";
+import Layout from "@layouts/Layout";
 
 import "@styles/gethelp.scss";
+import withLogin from "../hocs/withLogin";
 
 const GetHelp = () => <Layout>GetHelp page</Layout>;
 
-export default GetHelp;
+export default withLogin(GetHelp);
