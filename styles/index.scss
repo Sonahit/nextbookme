@@ -13,6 +13,9 @@
     padding: 20px;
     margin: 0 40px;
   }
+  @media screen and (max-width: 800px) {
+    margin: 10px 0;
+  }
 }
 
 .main {
@@ -24,6 +27,17 @@
     margin: 50px;
     .card {
       margin: 20px;
+    }
+  }
+  @media screen and (max-width: 800px) {
+    &__cards {
+      flex-direction: column;
+      width: 40%;
+      margin: 10px;
+      align-self: center;
+      .card {
+        margin: 5px;
+      }
     }
   }
 

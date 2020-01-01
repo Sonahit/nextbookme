@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@koa/cors": "^2.2.3",
+    "@svgr/webpack": "^5.0.1",
     "@zeit/next-sass": "^1.0.1",
     "cross-env": "^6.0.3",
     "koa": "^2.11.0",

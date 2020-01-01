@@ -3,6 +3,7 @@ import Link from "next/link";
 import { withRouter } from "next/router";
 import "./Nav.scss";
 import PropTypes from "prop-types";
+import Menu from "@svg/Menu";
 /**
  * @typedef {Object} Link
  * @property {string} href
@@ -18,6 +19,7 @@ import PropTypes from "prop-types";
 const Nav = ({ links, router }) => {
   return (
     <nav>
+      <Menu />
       <ul className="nav nav-tabs">
         {links.map(({ key, href, label }) => (
           <li className="nav-item" key={key}>

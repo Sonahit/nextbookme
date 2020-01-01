@@ -9,6 +9,7 @@ module.exports = withSass({
   webpack(config, options) {
     config.resolve.alias["@components"] = path.join(__dirname, "components");
     config.resolve.alias["@styles"] = path.join(__dirname, "styles");
+    config.resolve.alias["@svg"] = path.join(__dirname, "components/svg");
     config.resolve.alias["@layouts"] = path.join(
       __dirname,
       "components/layouts"
@@ -17,6 +18,10 @@ module.exports = withSass({
       __dirname,
       "components/layouts/styles"
     );
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ["@svgr/webpack"]
+    });
     return config;
   }
 });
