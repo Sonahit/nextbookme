@@ -1,7 +1,7 @@
 import React from "react";
-import FooterNav from "./FooterNav";
+import FooterNav from "@components/FooterNav";
 
-import "./Footer.scss";
+import "@components/Footer.scss";
 
 export default function Footer({ links }) {
   return (

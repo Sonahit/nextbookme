@@ -1,7 +1,7 @@
 import React from "react";
 import Nav from "@components/Nav";
 
-import "./Header.scss";
+import "@components/Header.scss";
 
 export default function Header({ links }) {
   return (

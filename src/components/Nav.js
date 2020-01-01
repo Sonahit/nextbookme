@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { withRouter } from "next/router";
-import "./Nav.scss";
+import "@components/Nav.scss";
 import PropTypes from "prop-types";
 import Menu from "@svg/Menu";
 /**

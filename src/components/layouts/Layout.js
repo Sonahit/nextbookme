@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Default from "./Default";
+import Default from "@layouts/Default";
 import "@layoutStyles/main.scss";
-import Header from "../Header";
-import Footer from "../Footer";
+import Header from "@components/Header";
+import Footer from "@components/Footer";
 
 const links = [
   {
