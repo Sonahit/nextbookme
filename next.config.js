@@ -7,16 +7,20 @@ module.exports = withSass({
     localIdentName: "[local]"
   },
   webpack(config, options) {
-    config.resolve.alias["@components"] = path.join(__dirname, "components");
-    config.resolve.alias["@styles"] = path.join(__dirname, "styles");
-    config.resolve.alias["@svg"] = path.join(__dirname, "components/svg");
+    config.resolve.alias["root"] = path.join(__dirname, "src");
+    config.resolve.alias["@components"] = path.join(
+      __dirname,
+      "src/components"
+    );
+    config.resolve.alias["@styles"] = path.join(__dirname, "src/styles");
+    config.resolve.alias["@svg"] = path.join(__dirname, "src/components/svg");
     config.resolve.alias["@layouts"] = path.join(
       __dirname,
-      "components/layouts"
+      "src/components/layouts"
     );
     config.resolve.alias["@layoutStyles"] = path.join(
       __dirname,
-      "components/layouts/styles"
+      "src/components/layouts/styles"
     );
     config.module.rules.push({
       test: /\.svg$/,
