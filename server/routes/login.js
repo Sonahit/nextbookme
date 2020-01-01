@@ -4,6 +4,7 @@ const passport = require("koa-passport");
  * @param {import('koa-router')} router
  */
 module.exports = router => {
+  // TODO: FIX ME
   /**
    * @param {import('koa').Context} ctx
    * @param {import('koa').Next} next
@@ -21,13 +22,6 @@ module.exports = router => {
         );
         ctx.throw(status);
       } else {
-        jsonResponse(
-          ctx,
-          {
-            success: true
-          },
-          301
-        );
         await ctx.login(user);
         return ctx.redirect("/");
       }

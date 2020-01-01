@@ -5,7 +5,7 @@ import Layout from "@layouts/Layout";
 import "@styles/login.scss";
 import withLogin from "../hocs/withLogin";
 
-const Login = () => {
+const Login = ({ isSigned }) => {
   /**
    *
    * @param {React.FormEvent} e
@@ -25,14 +25,14 @@ const Login = () => {
     })
       .then(res => {
         if (res.ok) return res.json();
+        throw new Error(res.status, res.statusText);
       })
-      .then(user => {})
       .catch(err => {
         console.log(err);
       });
   };
   return (
-    <Layout>
+    <Layout isSigned={isSigned}>
       Login page
       <form onSubmit={handleSubmit}>
         <input type="text" name="username" placeholder="Login"></input>
@@ -41,10 +41,6 @@ const Login = () => {
       </form>
     </Layout>
   );
-};
-
-Login.getInitialProps = async ctx => {
-  return {};
 };
 
 export default withLogin(Login);

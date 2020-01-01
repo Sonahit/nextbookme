@@ -7,6 +7,7 @@ const bodyParser = require("koa-bodyparser");
 const logger = require("koa-logger");
 const session = require("koa-session");
 const passport = require("koa-passport");
+const cors = require("@koa/cors");
 const next = require("next");
 const dev = process.env.NODE_ENV !== "production";
 const config = require("./config/config");
@@ -19,9 +20,17 @@ const handle = app.getRequestHandler();
 
 const server = new Koa();
 server.use(logger());
+server.use(cors());
 server.use(bodyParser());
 server.keys = ["secret"];
-server.use(session({}, server));
+server.use(
+  session(
+    {
+      key: "session-token"
+    },
+    server
+  )
+);
 require("./middleware/auth");
 server.use(passport.initialize());
 server.use(passport.session());
