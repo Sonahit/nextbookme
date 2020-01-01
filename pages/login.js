@@ -1,11 +1,11 @@
 import React from "react";
 
 import Layout from "@layouts/Layout";
-
+import { useRouter } from "next/router";
 import "@styles/login.scss";
-import withLogin from "../hocs/withLogin";
 
-const Login = ({ isSigned }) => {
+const Login = ({ isSigned, setLogin }) => {
+  const router = useRouter();
   /**
    *
    * @param {React.FormEvent} e
@@ -20,12 +20,17 @@ const Login = ({ isSigned }) => {
       headers: {
         "Content-Type": "application/json"
       },
-      body,
-      redirect: "follow"
+      body
     })
       .then(res => {
-        if (res.ok) return res.json();
+        if (res.ok) return res;
         throw new Error(res.status, res.statusText);
+      })
+      .then(resp => {
+        if (resp.redirected) {
+          setLogin(true);
+          router.push(new URL(resp.url).pathname);
+        }
       })
       .catch(err => {
         console.log(err);
@@ -43,4 +48,4 @@ const Login = ({ isSigned }) => {
   );
 };
 
-export default withLogin(Login);
+export default Login;

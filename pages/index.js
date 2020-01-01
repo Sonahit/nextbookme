@@ -2,7 +2,6 @@ import React from "react";
 import Layout from "@layouts/Layout";
 
 import "@styles/index.scss";
-import withLogin from "../hocs/withLogin";
 
 const Home = ({ isSigned }) => {
   return (
@@ -84,4 +83,4 @@ const Home = ({ isSigned }) => {
   );
 };
 
-export default withLogin(Home);
+export default Home;
