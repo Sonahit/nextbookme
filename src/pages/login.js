@@ -20,6 +20,7 @@ const Login = ({ isSigned, setLogin }) => {
       headers: {
         "Content-Type": "application/json"
       },
+      credentials: "include",
       body
     })
       .then(res => {

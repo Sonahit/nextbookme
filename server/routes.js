@@ -25,11 +25,6 @@ module.exports = (server, app) => {
       require(`${protectedRoutes}/${route}`)(authRouter, app);
     }
   });
-  // protectedRoutes.forEach(route => {
-  //   authRouter.get(route, (ctx, next) => {
-  //     app.getRequestHandler()(ctx.req, ctx.res);
-  //   });
-  // });
 
   server
     .use(apiRouter.routes())

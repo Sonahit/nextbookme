@@ -1,5 +1,5 @@
 const jsonResponse = require("../../utils/JsonResponse");
-const urlPath = "/dashboard";
+const urlPath = "/booking";
 /**
  * @param {import('koa-router')} router
  * @param {import("next/dist/next-server/server/next-server").default} app

@@ -20,7 +20,7 @@ const handle = app.getRequestHandler();
 
 const server = new Koa();
 server.use(logger());
-server.use(cors());
+server.use(cors({ credentials: true }));
 server.use(bodyParser());
 server.keys = ["secret"];
 server.use(

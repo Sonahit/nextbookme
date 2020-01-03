@@ -42,6 +42,7 @@ module.exports = router => {
         401
       );
     } else {
+      ctx.cookies.set("session-secret", "secret");
       return jsonResponse(
         ctx,
         {
