@@ -1,10 +1,10 @@
 const jsonResponse = require("../utils/JsonResponse");
 const passport = require("koa-passport");
+const urlPath = "/login";
 /**
  * @param {import('koa-router')} router
  */
 module.exports = router => {
-  // TODO: FIX ME
   /**
    * @param {import('koa').Context} ctx
    * @param {import('koa').Next} next
@@ -53,6 +53,6 @@ module.exports = router => {
       );
     }
   };
-  router.post("/login", handlePost);
-  router.get("/login", handleGet);
+  router.post(urlPath, handlePost);
+  router.get(urlPath, handleGet);
 };

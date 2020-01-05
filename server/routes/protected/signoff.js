@@ -20,5 +20,6 @@ module.exports = (router, app) => {
     ctx.redirect("back");
     ctx.logout();
   };
-  router.get(urlPath, handleGet).post(urlPath, handlePost);
+  router.get(urlPath, handleGet);
+  router.post(urlPath, handlePost);
 };

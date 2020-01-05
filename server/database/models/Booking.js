@@ -5,7 +5,7 @@
  */
 module.exports = (sequelize, DataTypes) => {
   const Booking = sequelize.define(
-    "booking",
+    "Booking",
     {
       id: {
         type: DataTypes.INTEGER,
@@ -31,8 +31,12 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   );
+  /**
+   * @param {Object.<string, import('../index').Model>} models
+   */
   Booking.associate = function(models) {
-    // associations can be defined here
+    models.Booking.belongsTo(models.User);
+    models.Booking.hasOne(models.Link);
   };
   return Booking;
 };

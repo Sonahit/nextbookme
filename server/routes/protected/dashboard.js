@@ -19,5 +19,6 @@ module.exports = (router, app) => {
   const handleGet = async (ctx, next) => {
     await app.getRequestHandler()(ctx.req, ctx.res, urlPath, ctx.query);
   };
-  router.get(urlPath, handleGet).post(urlPath, handlePost);
+  router.get(urlPath, handleGet);
+  router.post(urlPath, handlePost);
 };

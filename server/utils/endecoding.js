@@ -3,7 +3,7 @@
  * @param {String} value
  */
 const encode = value => {
-  return value.toBase64();
+  return Buffer.from(value, "utf-8").toString("base64");
 };
 /**
  *

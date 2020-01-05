@@ -5,7 +5,7 @@
  */
 module.exports = (sequelize, DataTypes) => {
   const Admin = sequelize.define(
-    "admin",
+    "Admin",
     {
       userId: {
         type: DataTypes.INTEGER,
@@ -14,8 +14,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   );
+  /**
+   * @param {Object.<string, import('../index').Model>} models
+   */
   Admin.associate = function(models) {
-    // associations can be defined here
+    models.Admin.belongsTo(models.User);
   };
   return Admin;
 };

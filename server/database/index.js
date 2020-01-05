@@ -1,10 +1,35 @@
+/**
+ * @typedef {import('sequelize').Sequelize} SequelizeInstance
+ * @typedef {import('sequelize')} Sequelize
+ * @typedef {typeof import('sequelize').Model} Model
+ *
+ * @typedef {Object.<string, Model>} DynamicModels
+ *
+ * @typedef {Object} DatabaseInstance
+ * @property {Sequelize} Sequelize
+ * @property {SequelizeInstance} sequelize
+ * @property {DynamicModels} models
+ *
+ */
+
+/**
+ * @type {Sequelize} Sequelize
+ */
 const Sequelize = require("sequelize");
 const config = require("../config/config");
 const fs = require("fs");
 const path = require("path");
-const models = path.resolve(__dirname, "models");
+const modelsPath = path.resolve(__dirname, "models");
 /**
- * @type {import('sequelize').Sequelize} sequelize
+ * @type {DatabaseInstance} db
+ */
+const db = {
+  Sequelize: false,
+  sequelize: false,
+  models: {}
+};
+/**
+ * @type {SequelizeInstance} sequelize
  */
 const sequelize = new Sequelize(
   config.development.database,
@@ -16,14 +41,15 @@ const sequelize = new Sequelize(
   }
 );
 
-fs.readdirSync(models).forEach(model => {
+fs.readdirSync(modelsPath).forEach(model => {
   if (model.endsWith(".js")) {
-    require(model)(sequelize, Sequelize.DataTypes);
+    const instance = sequelize.import(`${modelsPath}/${model}`);
+    db.models[instance.name] = instance;
   }
 });
 
-module.exports = {
-  sequelize,
-  Sequelize,
-  Model: Sequelize.Model
-};
+Object.keys(db.models).forEach(model => db.models[model].associate(db.models));
+
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
+module.exports = db;

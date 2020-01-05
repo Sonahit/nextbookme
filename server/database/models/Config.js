@@ -5,7 +5,7 @@
  */
 module.exports = (sequelize, DataTypes) => {
   const Config = sequelize.define(
-    "config",
+    "Config",
     {
       userId: DataTypes.INTEGER,
       availableHours: DataTypes.INTEGER,
@@ -13,8 +13,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   );
+  /**
+   * @param {Object.<string, import('../index').Model>} models
+   */
   Config.associate = function(models) {
-    // associations can be defined here
+    models.Config.belongsTo(models.User);
   };
   return Config;
 };

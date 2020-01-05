@@ -7,7 +7,7 @@ const { encode, decode } = require("../../utils/endecoding");
  */
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
-    "user",
+    "User",
     {
       id: {
         type: DataTypes.INTEGER,
@@ -55,8 +55,13 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   );
+  /**
+   * @param {Object.<string, import('../index').Model>} models
+   */
   User.associate = function(models) {
-    // associations can be defined here
+    models.User.hasOne(models.Admin);
+    models.User.hasMany(models.Booking);
+    models.User.hasOne(models.Config);
   };
   return User;
 };
