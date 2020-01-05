@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-const fetch = require("node-fetch");
 
 export default function App({ Component, pageProps }) {
   const [login, setLogin] = useState(null);
