@@ -18,6 +18,7 @@ module.exports = withSass({
       __dirname,
       "src/components/layouts"
     );
+    config.resolve.alias["@utils"] = path.join(__dirname, "src/utils");
     config.resolve.alias["@layoutStyles"] = path.join(
       __dirname,
       "src/components/layouts/styles"

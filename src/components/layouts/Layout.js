@@ -48,6 +48,10 @@ const dashboardLinks = [
     label: "About"
   },
   {
+    href: "/dashboard",
+    label: "Dashboard"
+  },
+  {
     href: "/signoff",
     label: "Sign off"
   }

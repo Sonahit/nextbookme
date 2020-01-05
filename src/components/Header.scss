@@ -5,7 +5,8 @@
   justify-content: flex-end;
   margin-bottom: 40px;
   &__logo {
-    margin: 0 auto;
+    margin-right: auto;
+    margin-left: 4px;
     h1 {
       font-size: 2em;
       a {
@@ -17,5 +18,21 @@
         }
       }
     }
+  }
+}
+
+.burger {
+  width: 6%;
+  background-color: white;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 2000;
+  &__line {
+    margin: 3px;
+    padding: 2px;
+    border-top: 2px solid black;
+  }
+  &.active {
+    width: 20%;
   }
 }

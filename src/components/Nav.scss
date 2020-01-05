@@ -18,3 +18,19 @@ nav {
     font-size: 14px;
   }
 }
+
+.modal-nav {
+  &__list {
+    flex-direction: column;
+    align-items: center;
+  }
+  &__item {
+    a {
+      color: white;
+      font-size: 20px;
+    }
+  }
+  &__link {
+    /**/
+  }
+}

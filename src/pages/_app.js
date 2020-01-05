@@ -5,7 +5,7 @@ export default function App({ Component, pageProps }) {
   const [login, setLogin] = useState(null);
   useEffect(() => {
     const isSigned = async () =>
-      await fetch(`http://localhost:3000/api/v1/login`, {
+      await fetch(`${location.origin}/api/v1/login`, {
         credentials: "include"
       })
         .then(resp => resp.json())
