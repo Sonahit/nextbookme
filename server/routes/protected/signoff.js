@@ -17,8 +17,8 @@ module.exports = (router, app) => {
    * @param {import('koa').Next} next
    */
   const handleGet = (ctx, next) => {
-    ctx.redirect("back");
     ctx.logout();
+    return ctx.redirect("back");
   };
   router.get(urlPath, handleGet);
   router.post(urlPath, handlePost);

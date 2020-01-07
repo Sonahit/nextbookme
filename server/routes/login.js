@@ -11,12 +11,13 @@ module.exports = router => {
    */
   const handlePost = (ctx, next) => {
     return passport.authenticate("local", async (err, user, info, status) => {
+      console.log(err);
       if (!user) {
         jsonResponse(
           ctx,
           {
             success: false,
-            message: info.message
+            message: info
           },
           status
         );

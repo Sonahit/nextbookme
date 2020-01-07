@@ -1,6 +1,7 @@
 const jsonResponse = require("../utils/JsonResponse");
 const urlPath = "/signup";
 const db = require(`../database/index`);
+const validator = require("../middleware/validator");
 /**
  * @param {import('koa-router')} router
  */
@@ -22,15 +23,19 @@ module.exports = router => {
       defaults: {
         firstName,
         lastName,
-        password
-      },
-      where: {
+        password,
         username,
         email
+      },
+      where: {
+        [db.Sequelize.Op.or]: {
+          username,
+          email
+        }
       }
     }).then(([user, created]) => (created ? user : false));
     if (user) {
-      jsonResponse(
+      return jsonResponse(
         ctx,
         {
           success: true
@@ -38,14 +43,39 @@ module.exports = router => {
         200
       );
     }
-    jsonResponse(
+    return jsonResponse(
       ctx,
       {
         success: false,
         message: "User exists"
       },
-      200
+      400
     );
   };
-  router.post(urlPath, handlePost);
+  /**
+   * @type {import('../middleware/validator').Rule[]}
+   */
+  const rules = [
+    {
+      field: "username",
+      validators: ["required", "length_min:2"]
+    },
+    {
+      field: "email",
+      validators: ["required", "email"]
+    },
+    {
+      field: "password",
+      validators: ["required", "confirmed", "length_min:2"]
+    },
+    {
+      field: "firstName",
+      validators: ["string"]
+    },
+    {
+      field: "lastName",
+      validators: ["string"]
+    }
+  ];
+  router.post(urlPath, validator(rules), handlePost);
 };

@@ -12,7 +12,7 @@ const next = require("next");
 const dev = process.env.NODE_ENV !== "production";
 const config = require("./config/config");
 const database = require("./database/index");
-
+require("./middleware/auth");
 /**
  * @type {NextServer}
  */
@@ -22,18 +22,19 @@ const server = new Koa();
 server.use(logger());
 server.use(cors({ credentials: true }));
 server.use(bodyParser());
+
 server.keys = ["secret"];
-server.use(
-  session(
-    {
-      key: "session-token"
-    },
-    server
+server
+  .use(
+    session(
+      {
+        key: "session-token"
+      },
+      server
+    )
   )
-);
-require("./middleware/auth");
-server.use(passport.initialize());
-server.use(passport.session());
+  .use(passport.initialize())
+  .use(passport.session());
 
 database.sequelize
   .authenticate()

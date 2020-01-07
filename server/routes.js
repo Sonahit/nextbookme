@@ -6,6 +6,7 @@ const Router = require("koa-router");
 const validateLogin = require("./middleware/validateLogin");
 const apiRouter = new Router({ prefix: "/api/v1" });
 const authRouter = new Router();
+const nextRouter = new Router();
 const routes = `${__dirname}/routes`;
 const protectedRoutes = `${__dirname}/routes/protected`;
 
@@ -25,7 +26,6 @@ module.exports = (server, app) => {
       require(`${protectedRoutes}/${route}`)(authRouter, app);
     }
   });
-
   server
     .use(apiRouter.routes())
     .use(apiRouter.allowedMethods())

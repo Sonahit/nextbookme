@@ -1,6 +1,6 @@
 import React from "react";
-
 import Layout from "@layouts/Layout";
+import Api from "../utils/Api";
 
 import "@styles/signup.scss";
 import SignupForm from "@components/SignupForm";
@@ -54,17 +54,33 @@ const Signup = ({ isSigned }) => {
    */
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(e);
+    const form = e.currentTarget;
+    const inputs = Array.from(form.elements).reduce((acc, input) => {
+      if (input.name) {
+        acc = {
+          [input.name]: input.value,
+          ...acc
+        };
+      }
+      return acc;
+    }, {});
+    Api.post("/api/v1/signup", {
+      body: inputs
+    });
+    return true;
   };
   /**
    * @type {React.FormHTMLAttributes}
    */
   const attributes = {
-    onSubmit: handleSubmit
+    onSubmit: e => {
+      handleSubmit(e);
+      return true;
+    }
   };
   return (
     <Layout isSigned={isSigned}>
-      <section>
+      <section className="signup container">
         <SignupForm attributes={attributes} inputs={inputs} />
       </section>
     </Layout>

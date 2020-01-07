@@ -3,8 +3,8 @@ import React, { useState, useEffect } from "react";
 export default function App({ Component, pageProps }) {
   const [login, setLogin] = useState(null);
   useEffect(() => {
-    const isSigned = async () =>
-      await fetch(`${location.origin}/api/v1/login`, {
+    const isSigned = () =>
+      fetch(`${location.origin}/api/v1/login`, {
         credentials: "include"
       })
         .then(resp => resp.json())

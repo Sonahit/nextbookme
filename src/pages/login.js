@@ -2,6 +2,7 @@ import React from "react";
 
 import Layout from "@layouts/Layout";
 import { useRouter } from "next/router";
+import Api from "../utils/Api";
 import "@styles/login.scss";
 
 const Login = ({ isSigned, setLogin }) => {
@@ -14,19 +15,10 @@ const Login = ({ isSigned, setLogin }) => {
     e.preventDefault();
     const username = e.target.username.value;
     const password = e.target.password.value;
-    const body = JSON.stringify({ username, password });
-    fetch("/api/v1/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      credentials: "include",
+    const body = { username, password };
+    Api.post("/api/v1/login", {
       body
     })
-      .then(res => {
-        if (res.ok) return res;
-        throw new Error(res.status, res.statusText);
-      })
       .then(resp => {
         if (resp.redirected) {
           setLogin(true);
@@ -40,7 +32,12 @@ const Login = ({ isSigned, setLogin }) => {
   return (
     <Layout isSigned={isSigned}>
       Login page
-      <form onSubmit={handleSubmit}>
+      <form
+        onSubmit={e => {
+          handleSubmit(e);
+          return true;
+        }}
+      >
         <input type="text" name="username" placeholder="Login"></input>
         <input type="password" name="password" placeholder="Password"></input>
         <input type="submit" value="Submit"></input>

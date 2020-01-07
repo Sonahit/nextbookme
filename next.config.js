@@ -1,4 +1,5 @@
 const withSass = require("@zeit/next-sass");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 const path = require("path");
 module.exports = withSass({
   cssModules: true,
@@ -27,6 +28,13 @@ module.exports = withSass({
       test: /\.svg$/,
       use: ["@svgr/webpack"]
     });
+    config.plugins.push(
+      new CopyWebpackPlugin([
+        {
+          from: "node_modules/webextension-polyfill/dist/browser-polyfill.js"
+        }
+      ])
+    );
     return config;
   }
 });
