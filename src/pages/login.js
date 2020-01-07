@@ -4,6 +4,30 @@ import Layout from "@layouts/Layout";
 import { useRouter } from "next/router";
 import Api from "../utils/Api";
 import "@styles/login.scss";
+import Form from "../components/Form";
+
+/**
+ * @type {import('../components/Form').Input[]} inputs
+ */
+const inputs = [
+  {
+    name: "username",
+    type: "text",
+    placeholder: "Username...",
+    label: "Username"
+  },
+  {
+    name: "password",
+    type: "password",
+    placeholder: "Password...",
+    label: "Password"
+  },
+  {
+    name: "remember",
+    type: "checkbox",
+    label: "Remember me"
+  }
+];
 
 const Login = ({ isSigned, setLogin }) => {
   const router = useRouter();
@@ -29,19 +53,14 @@ const Login = ({ isSigned, setLogin }) => {
         console.log(err);
       });
   };
+  const attributes = {
+    onSubmit: handleSubmit
+  };
   return (
     <Layout isSigned={isSigned}>
-      Login page
-      <form
-        onSubmit={e => {
-          handleSubmit(e);
-          return true;
-        }}
-      >
-        <input type="text" name="username" placeholder="Login"></input>
-        <input type="password" name="password" placeholder="Password"></input>
-        <input type="submit" value="Submit"></input>
-      </form>
+      <section className="login container">
+        <Form attributes={attributes} inputs={inputs} />
+      </section>
     </Layout>
   );
 };

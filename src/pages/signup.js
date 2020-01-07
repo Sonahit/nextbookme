@@ -3,10 +3,10 @@ import Layout from "@layouts/Layout";
 import Api from "../utils/Api";
 
 import "@styles/signup.scss";
-import SignupForm from "@components/SignupForm";
+import Form from "@components/Form";
 
 /**
- * @type {import('../components/SignupForm').Input[]} inputs
+ * @type {import('../components/Form').Input[]} inputs
  */
 const inputs = [
   {
@@ -81,7 +81,7 @@ const Signup = ({ isSigned }) => {
   return (
     <Layout isSigned={isSigned}>
       <section className="signup container">
-        <SignupForm attributes={attributes} inputs={inputs} />
+        <Form attributes={attributes} inputs={inputs} />
       </section>
     </Layout>
   );

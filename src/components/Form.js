@@ -20,10 +20,20 @@ import PropTypes from "prop-types";
  *
  * @param {FormProps} props
  */
-export default function SignupForm({ inputs, attributes }) {
+export default function Form({ inputs, attributes }) {
   return (
     <form {...attributes}>
       {inputs.map(input => {
+        if (input.type === "checkbox") {
+          return (
+            <div
+              className="form-group form-check"
+              key={`${input.name}-${input.type}`}
+            >
+              <InputComponent {...input} />
+            </div>
+          );
+        }
         return (
           <div className="form-group" key={`${input.name}-${input.type}`}>
             <InputComponent {...input} />
@@ -49,7 +59,7 @@ const InputComponent = ({
   ...other
 }) => {
   const InputForm =
-    type !== "check" ? (
+    type !== "checkbox" ? (
       <input
         type={type}
         className="form-control"
@@ -62,7 +72,7 @@ const InputComponent = ({
     ) : (
       <input
         type={type}
-        className="form-control"
+        className="form-check-input"
         id={`${name}-input`}
         name={name}
         aria-describedby={`${name}Help"`}
@@ -71,11 +81,11 @@ const InputComponent = ({
     );
   return (
     <>
-      {label && type !== "check" && (
+      {label && type !== "checkbox" && (
         <label htmlFor={`${name}-input`}>{label}</label>
       )}
       {InputForm}
-      {label && type === "check" && (
+      {label && type === "checkbox" && (
         <label className="form-check-label" htmlFor={`${name}-input`}>
           {label}
         </label>
@@ -89,7 +99,7 @@ const InputComponent = ({
   );
 };
 
-SignupForm.propTypes = {
+Form.propTypes = {
   inputs: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
